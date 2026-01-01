@@ -2,11 +2,10 @@
 
 FastAPI backend service that converts YouTube videos into actionable PDF notes with AI-powered insights and analysis.
 
-## 📸 Demo
+## 📸 Screenshots
 ![YT-PDF Demo](/uploads/sample/yt-pdf-demo.jpeg)
-> Screenshot of a sample PDF generated from a YouTube video.
 
-> View the full sample PDF [here](yt-pdf-demo.pdf).
+*Example PDF generated from a YouTube video. [View full sample →](/uploads/sample/yt-pdf-demo.pdf)*
 
 ## 🚀 Features
 
