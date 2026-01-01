@@ -1,0 +1,31 @@
+fail_fast: false
+exclude: ^.venv/|.*\.txt$|migrations/
+repos:
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.9.17
+    hooks:
+      - id: uv-lock
+      - id: uv-export
+        args:
+          - --frozen
+          - --output-file=requirements.txt
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-json
+      - id: pretty-format-json
+        args: ["--indent=2", "--autofix", "--no-sort-keys"]
+  - repo: https://github.com/psf/black
+    rev: 25.12.0
+    hooks:
+      - id: black
+        language_version: python3
+        ignore: W503,E221,W504
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.3.0
+    hooks:
+      - id: flake8
+        args: ["--ignore=E501,W503", "--max-line-length=120"]
+        ignore: E203 F401

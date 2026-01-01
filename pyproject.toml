@@ -1,0 +1,20 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = "YouTube to PDF Note Generation Service"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]>=0.116.1",
+    "openai>=1.99.1",
+    "pydantic-settings>=2.10.1",
+    "pydub==0.25.1",
+    "python-multipart>=0.0.20",
+    "weasyprint==66.0",
+    "yt-dlp==2025.7.21",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.5.1",
+]
