@@ -56,18 +56,14 @@ class YouTubeService:
                         f"Video duration ({video_info['duration']}s) exceeds maximum allowed duration ({settings.MAX_VIDEO_DURATION}s)"
                     )
 
-                logger.info(
-                    f"Successfully extracted info for video \n\n: {video_info}"
-                )
+                logger.info(f"Successfully extracted info for video \n\n: {video_info}")
                 return video_info
 
         except Exception as ex:
             logger.exception(f"Error extracting video info: {str(ex)}")
             raise ValueError(f"Failed to extract video information: {str(ex)}")
 
-    def download_audio(
-        self, url: str, video_info: dict[str, Any] | None = None
-    ) -> str:
+    def download_audio(self, url: str, video_info: dict[str, Any] | None = None) -> str:
         """
         Download audio from YouTube video and convert to MP3.
         """
@@ -140,9 +136,9 @@ class YouTubeService:
         Validate if the URL is a valid YouTube URL.
 
         Possible patterns:
-        - https://www.youtube.com/watch?v=LDB4uaJ87e0 
-        - https://youtu.be/LDB4uaJ87e0?feature=shared 
-        - https://www.youtube.com/embed/LDB4uaJ87e0?si=Z-c99q_ZXh2jT5RQ 
+        - https://www.youtube.com/watch?v=LDB4uaJ87e0
+        - https://youtu.be/LDB4uaJ87e0?feature=shared
+        - https://www.youtube.com/embed/LDB4uaJ87e0?si=Z-c99q_ZXh2jT5RQ
         """
         youtube_patterns = [
             r"(?:https?://)?(?:www\.)?youtube\.com/watch\?v=[\w-]+",

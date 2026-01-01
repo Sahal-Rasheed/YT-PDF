@@ -3,7 +3,7 @@ import logging
 from typing import Any
 from pathlib import Path
 
-from weasyprint import HTML, CSS # noqa
+from weasyprint import HTML, CSS  # noqa
 from weasyprint.text.fonts import FontConfiguration
 
 from core.config import settings
@@ -22,9 +22,7 @@ class PDFService:
 
         self.font_config = FontConfiguration()
 
-    def generate_pdf(
-        self, html_content: str, video_info: dict[str, Any]
-    ) -> str:
+    def generate_pdf(self, html_content: str, video_info: dict[str, Any]) -> str:
         """
         Generate PDF from HTML content.
         """

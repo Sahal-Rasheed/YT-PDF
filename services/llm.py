@@ -164,47 +164,47 @@ class LLMService:
             li {{ margin-bottom: 5px; }}
             .summary {{ background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin-bottom: 20px; }}
         </style>
-        
+
         <div class="header">
             <h1 class="title">{video_info.get("title", "Video Analysis")}</h1>
             <div class="meta">
-                <p>Duration: {self._format_duration(video_info.get("duration", 0))} | 
+                <p>Duration: {self._format_duration(video_info.get("duration", 0))} |
                    Uploader: {video_info.get("uploader", "Unknown")}</p>
             </div>
         </div>
-        
+
         <div class="summary">
             <h2>Executive Summary</h2>
             <p>{analysis.get("executive_summary", "Comprehensive analysis of video content.")}</p>
         </div>
-        
+
         <div class="section">
             <h2>Main Takeaways</h2>
             <ul>
                 {"".join(f"<li>{takeaway}</li>" for takeaway in analysis.get("main_takeaways", []))}
             </ul>
         </div>
-        
+
         <div class="section">
             <h2>Key Concepts</h2>
             <ul>
                 {"".join(f"<li>{concept}</li>" for concept in analysis.get("key_concepts", []))}
             </ul>
         </div>
-        
+
         <div class="section">
             <h2>Actionable Insights</h2>
             <ul>
                 {"".join(f"<li>{insight}</li>" for insight in analysis.get("actionable_insights", []))}
             </ul>
         </div>
-        
+
         <div class="section">
             <h2>Detailed Summary</h2>
             <p>{analysis.get("detailed_summary", "Detailed analysis not available.")}</p>
         </div>
         """
-    
+
     def build_analysis_prompt(self, video_info: dict[str, Any], transcript: str) -> str:
         """
         Build analysis prompt for the LLM.
@@ -216,8 +216,10 @@ class LLMService:
             description=video_info.get("description", "N/A")[:500],
             transcript=transcript,
         )
-    
-    def build_pdf_prompt(self, analysis: dict[str, Any], video_info: dict[str, Any]) -> str:
+
+    def build_pdf_prompt(
+        self, analysis: dict[str, Any], video_info: dict[str, Any]
+    ) -> str:
         """
         Build PDF prompt for the LLM.
         """

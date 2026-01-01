@@ -49,7 +49,7 @@ Please ensure the JSON structure is as follows:
 """
 
 
-PDF_SYSTEM_PROMPT = """You are an expert document designer specializing in creating well-formatted, professional PDF content from analyzed video data. 
+PDF_SYSTEM_PROMPT = """You are an expert document designer specializing in creating well-formatted, professional PDF content from analyzed video data.
 
 Create comprehensive HTML content that will be converted to PDF. The content should be:
 1. Well-structured with proper headings and sections
