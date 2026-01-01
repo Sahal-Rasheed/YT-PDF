@@ -1,5 +1,5 @@
 [project]
-name = "backend"
+name = "YT-PDF-Service"
 version = "0.1.0"
 description = "YouTube to PDF Note Generation Service"
 readme = "README.md"
