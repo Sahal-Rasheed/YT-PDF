@@ -57,6 +57,8 @@ Create comprehensive HTML content that will be converted to PDF. The content sho
 3. Professional and easy to read
 4. Include all the analyzed information in a logical flow
 
+IMPORTANT: Return ONLY pure HTML content without any markdown code block markers (```html or ```). Do not wrap your response in code blocks.
+
 Use proper HTML structure with semantic elements. Do not include <html>, <head>, or <body> tags - just the content that goes inside the body.
 
 Include CSS styles using <style> tags for:

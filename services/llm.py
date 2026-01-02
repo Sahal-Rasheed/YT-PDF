@@ -120,6 +120,8 @@ class LLMService:
 
             html_content = response.choices[0].message.content
 
+            html_content = self._clean_markdown_code_blocks(html_content)
+
             logger.info("Successfully generated PDF content")
             return html_content
 
@@ -144,6 +146,23 @@ class LLMService:
             return f"{minutes}m {seconds}s"
         else:
             return f"{seconds}s"
+
+    def _clean_markdown_code_blocks(self, content: str) -> str:
+        """
+        Remove markdown code block markers from content.
+        """
+        import re
+        
+        # remove ```html, ``` etc. at the start
+        content = re.sub(r'^```[\w]*\n?', '', content, flags=re.MULTILINE)
+        
+        # remove closing ``` at the end
+        content = re.sub(r'\n?```$', '', content, flags=re.MULTILINE)
+        
+        # remove any standalone ``` markers
+        content = content.replace('```', '')
+        
+        return content.strip()
 
     def _generate_fallback_html(
         self, analysis: dict[str, Any], video_info: dict[str, Any]
