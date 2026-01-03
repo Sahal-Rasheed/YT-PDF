@@ -152,16 +152,16 @@ class LLMService:
         Remove markdown code block markers from content.
         """
         import re
-        
+
         # remove ```html, ``` etc. at the start
-        content = re.sub(r'^```[\w]*\n?', '', content, flags=re.MULTILINE)
-        
+        content = re.sub(r"^```[\w]*\n?", "", content, flags=re.MULTILINE)
+
         # remove closing ``` at the end
-        content = re.sub(r'\n?```$', '', content, flags=re.MULTILINE)
-        
+        content = re.sub(r"\n?```$", "", content, flags=re.MULTILINE)
+
         # remove any standalone ``` markers
-        content = content.replace('```', '')
-        
+        content = content.replace("```", "")
+
         return content.strip()
 
     def _generate_fallback_html(
@@ -242,13 +242,41 @@ class LLMService:
         """
         Build PDF prompt for the LLM.
         """
+        # Format chapters section if available
+        chapters_section = ""
+        chapters = video_info.get("chapters", [])
+        if chapters and len(chapters) > 0:
+            chapters_section = "\nVideo Chapters:"
+            for i, chapter in enumerate(chapters, 1):
+                start_time = self._format_timestamp(chapter.get("start_time", 0))
+                end_time = self._format_timestamp(chapter.get("end_time", 0))
+                title = chapter.get("title", f"Chapter {i}")
+                chapters_section += f"\n  {i}. {title} ({start_time} - {end_time})"
+
         return PDF_USER_PROMPT.format(
             title=video_info.get("title", "N/A"),
             duration=video_info.get("duration", "N/A"),
             uploader=video_info.get("uploader", "N/A"),
             upload_date=video_info.get("upload_date", "N/A"),
+            chapters_section=chapters_section,
             analysis=analysis,
         )
+
+    def _format_timestamp(self, seconds: float) -> str:
+        """
+        Format timestamp from seconds to HH:MM:SS or MM:SS.
+        """
+        if not seconds:
+            return "00:00"
+
+        hours = int(seconds // 3600)
+        minutes = int((seconds % 3600) // 60)
+        secs = int(seconds % 60)
+
+        if hours > 0:
+            return f"{hours:02d}:{minutes:02d}:{secs:02d}"
+        else:
+            return f"{minutes:02d}:{secs:02d}"
 
 
 llm_service = LLMService()

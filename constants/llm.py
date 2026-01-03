@@ -61,6 +61,14 @@ IMPORTANT: Return ONLY pure HTML content without any markdown code block markers
 
 Use proper HTML structure with semantic elements. Do not include <html>, <head>, or <body> tags - just the content that goes inside the body.
 
+If video chapters are provided, include them in a dedicated section using this structure:
+<div class="chapters">
+    <h2>Video Chapters</h2>
+    <ol>
+        <li><strong>Chapter Title</strong> <span class="chapter-timestamp">(timestamp)</span></li>
+    </ol>
+</div>
+
 Include CSS styles using <style> tags for:
 - Typography and fonts
 - Colors and spacing
@@ -78,6 +86,7 @@ Video Information:
 - Duration: {duration} seconds
 - Uploader: {uploader}
 - Upload Date: {upload_date}
+- Chapters: {chapters_section}
 
 Analysis Data:
 {analysis}

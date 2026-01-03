@@ -33,6 +33,18 @@ class YouTubeService:
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 info = ydl.extract_info(url, download=False)
 
+                # extract chapters if available
+                chapters = []
+                if info.get("chapters"):
+                    chapters = [
+                        {
+                            "title": ch.get("title", "Untitled Chapter"),
+                            "start_time": ch.get("start_time", 0),
+                            "end_time": ch.get("end_time", 0),
+                        }
+                        for ch in info.get("chapters", [])
+                    ]
+
                 video_info = {
                     "id": info.get("id"),
                     "title": info.get("title"),
@@ -46,6 +58,7 @@ class YouTubeService:
                     "categories": info.get("categories", []),
                     "thumbnail": info.get("thumbnail"),
                     "webpage_url": info.get("webpage_url"),
+                    "chapters": chapters,
                 }
 
                 if (

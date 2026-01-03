@@ -173,6 +173,39 @@ PDF_CSS = """
         border-top: 1px solid #ddd;
     }
 
+    /* Chapter styling */
+    .chapters {
+        background-color: #f0f4ff;
+        padding: 20px;
+        border-radius: 5px;
+        border-left: 4px solid #007acc;
+        margin: 20px 0 25px 0;
+        page-break-inside: avoid;
+    }
+
+    .chapters h2 {
+        color: #007acc;
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 14pt;
+    }
+
+    .chapters ol {
+        margin: 0;
+        padding-left: 25px;
+    }
+
+    .chapters li {
+        margin-bottom: 8px;
+        line-height: 1.6;
+    }
+
+    .chapter-timestamp {
+        color: #666;
+        font-size: 9pt;
+        font-family: 'Courier New', monospace;
+    }
+
     /* Table styling for structured content */
     table {
         width: 100%;

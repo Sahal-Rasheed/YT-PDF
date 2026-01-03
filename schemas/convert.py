@@ -12,6 +12,14 @@ class ProcessingStatus(str, Enum):
     FAILED = "failed"
 
 
+class Chapter(BaseModel):
+    """Video chapter schema."""
+
+    title: str
+    start_time: float
+    end_time: float
+
+
 class ConvertRequest(BaseModel):
     """Request schema for YouTube to PDF conversion."""
 
@@ -56,6 +64,7 @@ class VideoInfo(BaseModel):
     categories: list[str] | None = Field(default_factory=list)
     thumbnail: str | None = None
     webpage_url: str | None = None
+    chapters: list[Chapter] | None = Field(default_factory=list)
 
 
 class PDFInfo(BaseModel):
